@@ -1,0 +1,11 @@
+2009-04-06    <hocwp@slax>
+
+	* cl-newworld-sdl.lisp (draw-back-screen): Fixe l'item courant
+	lors d'une mise à jour de l'ecran principal.
+
+2009-04-06    <hocwp@slax>
+
+	* cl-newworld-sdl.lisp (treat-keys): Gere la touche entree du pave
+	numerique.
+
+

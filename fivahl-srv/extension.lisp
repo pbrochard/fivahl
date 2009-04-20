@@ -1,4 +1,4 @@
-;;; #Date#: Thu Jan 12 21:01:34 2006
+;;; #Date#: Thu Jan 12 21:01:34 2006 test
 
 (in-package :cl-newworld)
 
@@ -49,7 +49,7 @@
   (apply #'send-to perso (contenu panneau)))
 
 (defclass cure-dent (objet)
-  ((attaque :initarg :attaque :initform 1 :accessor attaque))) 
+  ((attaque :initarg :attaque :initform 1 :accessor attaque)))
 
 (defmethod taper ((perso perso) (cure-dent cure-dent) (cible perso))
   (let ((degat (+ (attaque cure-dent) (force perso))))

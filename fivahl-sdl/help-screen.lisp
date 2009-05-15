@@ -1,4 +1,4 @@
-(in-package :cl-newworld-sdl)
+(in-package :fivahl-sdl)
 
 (defun help-content ()
   '("F1         : Cette aide."

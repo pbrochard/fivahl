@@ -1,4 +1,4 @@
-(in-package :cl-newworld-sdl)
+(in-package :fivahl-sdl)
 
 (defparameter *button-press* nil)
 
@@ -6,8 +6,8 @@
 (defun create-main-window ()
   (setf *button-press* nil)
   (sdl:window *window-width* *window-height*
-	      :title-caption "cl-newworld-sdl"
-	      :icon-caption "cl-newworld-sdl"
+	      :title-caption "fivahl-sdl"
+	      :icon-caption "fivahl-sdl"
 	      :flags (if *fulscreen-mode* '(sdl:sdl-fullscreen sdl:sdl-hw-surface sdl:sdl-doublebuf) nil)))
 
 (defun create-back-surface ()

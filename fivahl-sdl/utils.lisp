@@ -1,4 +1,4 @@
-(in-package :cl-newworld-sdl)
+(in-package :fivahl-sdl)
 
 
 (defun screen-center-x() (ash *window-width* -1))

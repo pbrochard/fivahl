@@ -2,16 +2,18 @@
 
 (in-package :fivahl)
 
+(defparameter *port* 8079)
 
 (defun make-map ()
   (setf *monde*  (make-instance 'monde :nom "l'Univers"
 				:descr "Le monde de depart"
 				:serveur-sock (progn
-						(format t "~%~%*** Demarrage du serveur sur le port 30000 ***~%")
-						(port:open-socket-server 30000))
+						(format t "~%~%*** Demarrage du serveur sur le port ~A ***~%" *port*)
+						(port:open-socket-server *port*))
 				:serveur-http-sock (progn
-						     (format t "*** Demarrage du serveur HTTP sur le port 30001 ***~%~%")
-						     (port:open-socket-server 30001))))
+						     (format t "~%~%*** Demarrage du serveur sur le port ~A ***~%" (1+ *port*))
+						     (port:open-socket-server (1+ *port*)))))
+
   (let* ((livre-1 (make-instance 'livre :nom "Le grand livre"
 				 :descr "Un vieux livre tout poussiereux"
 				 :contenu '("Le sort est quelque part...")))

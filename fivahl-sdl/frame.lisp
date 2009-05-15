@@ -1,4 +1,4 @@
-(in-package :cl-newworld-sdl)
+(in-package :fivahl-sdl)
 
 
 (defun make-default-frame (title x y w h &key input (from :top) (content nil) valid-fun)

@@ -4,8 +4,8 @@
 
 (in-package #:asdf)
 
-(defsystem cl-newworld-sdl
-    :description "CL-NewWorld-SDL: a simple MUD server - SDL client part"
+(defsystem fivahl-sdl
+    :description "Fivahl-SDL: a simple MUD server - SDL client part"
     :version "0.1"
     :author "Philippe Brochard  <hocwp@free.fr>"
     :licence "GNU Public License (GPL)"
@@ -23,7 +23,7 @@
 			:depends-on ("package" "frame"))
 		 (:file "login-screen"
 			:depends-on ("package" "frame" "main-screen"))
-		 (:file "cl-newworld-sdl"
+		 (:file "fivahl-sdl"
 			:depends-on ("package" "frame" "help-screen" "login-screen" "main-screen")))
     :depends-on (:cffi :lispbuilder-sdl))
 

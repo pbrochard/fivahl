@@ -1,4 +1,4 @@
-(in-package :cl-newworld-sdl)
+(in-package :fivahl-sdl)
 
 (defun close-error-frame ()
   (setf *visible-frames* (remove *error-frame* *visible-frames*)

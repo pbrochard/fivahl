@@ -17,7 +17,7 @@
 
 ;;(asdf:operate 'asdf:load-op :lispbuilder-sdl-examples)
 
-(asdf:operate 'asdf:load-op :cl-newworld-sdl)
+(asdf:operate 'asdf:load-op :fivahl-sdl)
 
 
-(cl-newworld-sdl:main-loop 800 600)
+(fivahl-sdl:main-loop 800 600)

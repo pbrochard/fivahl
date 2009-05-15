@@ -1,11 +1,11 @@
 
 (in-package :common-lisp)
 
-(defpackage :cl-newworld-sdl
+(defpackage :fivahl-sdl
   (:use :common-lisp :port :tools)
   (:export :main-loop))
 
-(in-package :cl-newworld-sdl)
+(in-package :fivahl-sdl)
 
 
 (defparameter *server-sock* nil)

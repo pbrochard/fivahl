@@ -1,5 +1,5 @@
 ;;; #Date#: Thu Jan 12 21:01:34 2006 test
-
+;; Test de Baffan
 (in-package :cl-newworld)
 
 ;;; Definition d'une epee

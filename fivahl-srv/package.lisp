@@ -1,11 +1,11 @@
 
 (in-package :common-lisp)
 
-(defpackage :cl-newworld
+(defpackage :fivahl
   (:use :common-lisp :port :my-http :transfer-stream :tools)
   (:export :main-loop))
 
-(in-package :cl-newworld)
+(in-package :fivahl)
 
 (defparameter *compteur-id* 0)
 

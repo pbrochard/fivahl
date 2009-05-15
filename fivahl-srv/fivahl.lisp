@@ -1,7 +1,7 @@
 ;;; #Date#: Fri Feb 17 18:07:18 2006 ;;;fdskfjkdslf
 ;;; fdslkfmldskflds
 
-(in-package :cl-newworld)
+(in-package :fivahl)
 
 
 ;;; Fonctions generiques

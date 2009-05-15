@@ -32,8 +32,8 @@
 
 (push *base-dir* asdf:*central-registry*)
 
-(asdf:oos 'asdf:load-op :cl-newworld)
+(asdf:oos 'asdf:load-op :fivahl)
 
-(cl-newworld:main-loop)
+(fivahl:main-loop)
 
 

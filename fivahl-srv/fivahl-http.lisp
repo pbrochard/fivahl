@@ -1,4 +1,4 @@
-(in-package :cl-newworld)
+(in-package :fivahl)
 
 
 (defun send-basic-page (sock host title string url-return string-return
@@ -24,11 +24,11 @@
    'http://www.w3.org/TR/html4/strict.dtd'>
 <html>
 <head>
-  <title>CL-NEWWORLD: Login</title>
+  <title>FIVAHL: Login</title>
 </head>
 <body>
   <form action='' name='form' method='post' enctype='application/x-www-form-urlencoded'>
-    <h1>Bienvenue dans cl-newworld</h1>
+    <h1>Bienvenue dans fivahl</h1>
     <h2>" (or text "") "</h2>
     <p>Entrez votre pseudo :
       <input type='text' name='name' size='20'>
@@ -93,7 +93,7 @@
    'http://www.w3.org/TR/html4/strict.dtd'>
 <html>
 <head>
-  <title>CL-NEWWORLD: Login</title>
+  <title>FIVAHL: Login</title>
 
   <script type='text/javascript'>
     function submitenter(myfield,e) {

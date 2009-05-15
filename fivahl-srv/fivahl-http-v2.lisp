@@ -1,4 +1,4 @@
-(in-package :cl-newworld)
+(in-package :fivahl)
 
 (defparameter *hide-url* t)
 
@@ -85,7 +85,7 @@
 <html>
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
-  <title>CL-NEWWORLD: Login</title>
+  <title>FIVAHL: Login</title>
 </head>
 <body>
   <script type='text/javascript'><!--
@@ -102,7 +102,7 @@
   --></script>
 
   <form action='' name='my_form' method=''>
-    <h1>Bienvenue dans cl-newworld</h1>
+    <h1>Bienvenue dans fivahl</h1>
     <h2>" (if text text "") "</h2>
     <p>Entrez votre pseudo :
       <input type='text' name='name' size='20' onKeyPress='return submitenter(this,event)'>
@@ -172,7 +172,7 @@
 <html>
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
-  <title>CL-NEWWORLD</title>
+  <title>FIVAHL</title>
 </head>
 <body onload='javascript:set_place();'>
   <script type='text/javascript'><!--

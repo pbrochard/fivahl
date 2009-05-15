@@ -1,6 +1,6 @@
 ;;; #Date#: Thu Feb 16 22:01:53 2006
 
-(in-package :cl-newworld)
+(in-package :fivahl)
 
 
 (defun make-map ()
@@ -55,6 +55,6 @@
     (push (make-instance 'epee :nom "Une epee" :descr "Une petite epee") (contenu lieu-1))
     (push (make-instance 'pomme :nom "Une pomme" :descr "Une petite pomme pourrie") (contenu lieu-1))
     (push (make-instance 'pomme :nom "Une pomme" :descr "Une grosse pomme juteuse" :qualite 10) (contenu lieu-1))
-    (send-to perso-1 "Bonjour, bienvenue dans CL-NewWorld")
+    (send-to perso-1 "Bonjour, bienvenue dans Fivahl")
     (regarder perso-1)
     (show-prompt perso-1)))

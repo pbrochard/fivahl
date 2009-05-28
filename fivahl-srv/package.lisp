@@ -33,7 +33,7 @@
 (defclass monde (objet)
   ((en-attente :initform nil :accessor en-attente)
    (serveur-sock :initarg :serveur-sock :accessor serveur-sock)
-   (serveur-http-sock :initarg :serveur-http-sock :accessor serveur-http-sock)
+   ;;   (serveur-http-sock :initarg :serveur-http-sock :accessor serveur-http-sock)
    (lieu-depart :initarg :lieu-depart :initform nil :accessor lieu-depart)))
 
 

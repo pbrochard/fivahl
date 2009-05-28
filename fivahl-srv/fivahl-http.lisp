@@ -243,16 +243,16 @@
 				       "Sorry, this page is not on server.<br>"
 				       "" "")))))))
 
-(defmethod check-new-http-connexion ((monde monde))
-  (let ((sock (port:socket-accept (serveur-http-sock monde) :wait 0.01d0)))
-    (when sock
-      (init-transfer-stream)
-      ;;(format t "~&******************** New Http Connexion ********************~%")
-      (unwind-protect
-	   (let ((headers (get-http sock)))
-	     (format t "=> Reading headers : ~S~%" headers)
-	     (send-page sock headers))
-	(when (have-to-close-socket)
-	  ;;(format t "~&Socket closed manually~%")
-	  (close sock))))))
+;;(defmethod check-new-http-connexion ((monde monde))
+;;  (let ((sock (port:socket-accept (serveur-http-sock monde) :wait 0.01d0)))
+;;    (when sock
+;;      (init-transfer-stream)
+;;      ;;(format t "~&******************** New Http Connexion ********************~%")
+;;      (unwind-protect
+;;	   (let ((headers (get-http sock)))
+;;	     (format t "=> Reading headers : ~S~%" headers)
+;;	     (send-page sock headers))
+;;	(when (have-to-close-socket)
+;;	  ;;(format t "~&Socket closed manually~%")
+;;	  (close sock))))))
 

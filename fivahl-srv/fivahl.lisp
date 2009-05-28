@@ -50,7 +50,7 @@
 
 (defmethod defaut ((monde monde))
   (check-new-connexion monde)
-  (check-new-http-connexion monde)
+  ;;(check-new-http-connexion monde)
   (dolist (perso (en-attente monde))
     (defaut perso))
   (when (consp (contenu monde))

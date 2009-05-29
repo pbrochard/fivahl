@@ -40,7 +40,10 @@
   (send-to m-perso perso " est en train de vous manger (HP=" (hp m-perso) ")")
   (show-prompt m-perso))
 
-
+(defmethod manger ((perso perso) (cure-dent cure-dent))
+  (decf (hp perso) 13)
+  (send-to perso cure-dent " Vous vous étranglez avec le cure-dent ! (HP=" (hp perso) ")"))
+  
 (defclass panneau (objet)
   ())
 

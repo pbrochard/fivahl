@@ -40,9 +40,7 @@
   (send-to m-perso perso " est en train de vous manger (HP=" (hp m-perso) ")")
   (show-prompt m-perso))
 
-(defmethod manger ((perso perso) (cure-dent cure-dent))
-  (decf (hp perso) 13)
-  (send-to perso cure-dent " Vous vous étranglez avec le cure-dent ! (HP=" (hp perso) ")"))
+
   
 (defclass panneau (objet)
   ())
@@ -53,12 +51,27 @@
 
 (defclass cure-dent (objet)
   ((attaque :initarg :attaque :initform 1 :accessor attaque)))
-
-(defmethod taper ((perso perso) (cure-dent cure-dent) (cible perso))
-  (let ((degat (+ (attaque cure-dent) (force perso))))
-    (decf (hp cible) degat)
-    (send-to perso "Vous tapez sur " cible " avec " degat " (HP=" (hp cible) ")")
-    (send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
-    (show-prompt cible)))
+  
+(defmethod manger ((perso perso) (cure-dent cure-dent))
+  (decf (hp perso) 13)
+  (send-to perso "Vous vous étranglez avec le cure-dent !
+(HP=" (hp perso) ")"))
+  
+; (defmethod taper ((perso perso) (cure-dent cure-dent) (cible perso))
+  ; (let ((degat (+ (attaque cure-dent) (force perso))))
+    ; (decf (hp cible) degat)
+    ; (send-to perso "Vous tapez sur " cible " avec " degat " (HP=" (hp cible) ")")
+    ; (send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
+    ; (show-prompt cible)))
 
 (rend-prenable cure-dent)
+
+(defmacro rend-tapant (objet type)
+	`(defmethod taper ((perso perso) (,objet ,type) (cible perso))
+	  (let ((degat (+ (attaque ,objet) (force perso))))
+		(decf (hp cible) degat)
+		(send-to perso "Vous tapez sur " cible " avec " degat " (HP=" (hp cible) ")")
+		(send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
+		(show-prompt cible))))
+		
+(rend-tapant cd cure-dent)

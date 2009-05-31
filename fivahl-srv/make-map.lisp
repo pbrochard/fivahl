@@ -2,7 +2,7 @@
 
 (in-package :fivahl)
 
-(defparameter *port* 8080)
+(defparameter *port* 30000)
 
 (defun make-map ()
   (setf *monde*  (make-instance 'monde :nom "l'Univers"

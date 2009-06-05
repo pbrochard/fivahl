@@ -86,10 +86,25 @@
 
 ;;; Un personnage
 
+;;(defmethod send-newline-to-perso ((perso perso))
+;;  (ignore-errors
+;;    (format (sock perso) "~A" (newline perso))
+;;    (force-output (sock perso))))
+
+(defmacro with-handle-error (&body body)
+  `(handler-case
+       (progn ,@body)
+     (error (c)
+       (format t "Error: ~A~%" c)
+       (force-output)
+       nil)))
+
 (defmethod send-newline-to-perso ((perso perso))
-  (ignore-errors
-    (format (sock perso) "~A" (newline perso))
-    (force-output (sock perso))))
+  (with-handle-error
+      (format (sock perso) "~A" (newline perso)))
+  (with-handle-error
+      (force-output (sock perso))))
+
 
 
 (defun format-args (style args)
@@ -102,22 +117,25 @@
 	(t (princ a str))))))
 
 (defmethod send-to ((perso perso) &rest args)
-  (ignore-errors
-    (let ((str (format-args (perso-style perso) args)))
-      (format (sock perso) str)
-      (format (sock perso) "~A" (newline perso))
-      (setf (memory perso) (forget-list (nconc (memory perso) (list str)))))
-    (force-output (sock perso))))
+  (let ((str (format-args (perso-style perso) args)))
+    (with-handle-error
+	(format (sock perso) str))
+    (with-handle-error
+	(format (sock perso) "~A" (newline perso)))
+    (setf (memory perso) (forget-list (nconc (memory perso) (list str)))))
+  (with-handle-error
+      (force-output (sock perso))))
 
 (defmethod read-from ((perso perso))
-  (ignore-errors
-    (string-trim '(#\Newline #\Return) (read-line (sock perso)))))
+  (with-handle-error
+      (string-trim '(#\Newline #\Return) (read-line (sock perso)))))
 
 
 (defmethod show-prompt ((perso perso))
-  (ignore-errors
-    (format (sock perso) "~A" (prompt perso))
-    (force-output (sock perso))))
+  (with-handle-error
+      (format (sock perso) "~A" (prompt perso)))
+  (with-handle-error
+      (force-output (sock perso))))
 
 (defmethod clear-screen ((perso perso))
   (dotimes (i 80)
@@ -154,9 +172,10 @@
 
 
 (defmethod defaut ((perso perso))
-  (when (and (sock perso)
-	     (ignore-errors (listen (sock perso))))
-    (action-from-line perso (read-from perso))))
+  (with-handle-error
+      (when (and (sock perso)
+	     (listen (sock perso)))
+	(action-from-line perso (read-from perso)))))
 
 
 (create-command quitter (perso))
@@ -372,7 +391,7 @@
 			(do-for-all-perso (perso obj)
 				(send-to obj "<" perso " pose " objet ">")
 				(show-prompt obj))))
-	  
+
 (defmethod prendre (perso (objet objet-prenable))
 	(let ((contenant (trouve-contenant perso *monde*)))
 		(when (member objet (contenu contenant))

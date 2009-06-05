@@ -4,7 +4,7 @@
 
 ;;; Definition d'une epee
 
-(defclass epee (objet)
+(defclass epee (objet-prenable)
   ((attaque :initarg :attaque :initform 9 :accessor attaque)))
 
 (create-command taper (perso objet cible))
@@ -16,10 +16,10 @@
     (send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
     (show-prompt cible)))
 
-(rend-prenable epee)
+; (rend-prenable epee)
 
 ;;; Definition d'une pomme
-(defclass pomme (objet)
+(defclass pomme (objet-prenable)
   ((qualite :initarg :qualite :initform 1 :accessor qualite)))
 
 (create-command manger (perso objet))
@@ -29,7 +29,7 @@
   (detruit pomme)
   (send-to perso "La pomme etait tres bonne (HP=" (hp perso) ")"))
 
-(rend-prenable pomme)
+; (rend-prenable pomme)
 
 
 (defmethod manger ((perso perso) (m-perso perso))
@@ -49,7 +49,7 @@
   (send-to perso "Sur le panneau est ecrit :")
   (apply #'send-to perso (contenu panneau)))
 
-(defclass cure-dent (objet)
+(defclass cure-dent (objet-prenable)
   ((attaque :initarg :attaque :initform 1 :accessor attaque)))
   
 (defmethod manger ((perso perso) (cure-dent cure-dent))
@@ -64,14 +64,13 @@
     ; (send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
     ; (show-prompt cible)))
 
-(rend-prenable cure-dent)
+; (rend-prenable cure-dent)
 
 (defmacro rend-tapant (objet type)
 	`(defmethod taper ((perso perso) (,objet ,type) (cible perso))
-	  (let ((degat (+ (attaque ,objet) (force perso))))
-		(decf (hp cible) degat)
+	   (let ((degat (+ (attaque ,objet) (force perso))))
+	    (decf (hp cible) degat)
 		(send-to perso "Vous tapez sur " cible " avec " degat " (HP=" (hp cible) ")")
 		(send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
-		(show-prompt cible))))
-		
+		(show-prompt cible))))		
 (rend-tapant cd cure-dent)

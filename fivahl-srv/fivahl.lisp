@@ -342,29 +342,45 @@
 
 
 
-(create-command poser (perso objet))
-(create-command prendre (perso objet))
+(create-command poser (perso objet-prenable))
+(create-command prendre (perso objet-prenable))
 
-(defmacro rend-prenable (type)
-  `(progn
-    (defmethod poser (perso (objet ,type))
-      (when (member objet (contenu perso))
+; (defmacro rend-prenable (type)
+  ; `(progn
+    ; (defmethod poser (perso (objet ,type))
+      ; (when (member objet (contenu perso))
+	; (let ((contenant (trouve-contenant perso *monde*)))
+	  ; (transfert objet (contenu perso) (contenu contenant)))
+	; (send-to perso "Vous posez " objet)
+	; (do-for-all-perso (perso obj)
+	  ; (send-to obj "<" perso " pose " objet ">")
+	  ; (show-prompt obj))))
+    ; (defmethod prendre (perso (objet ,type))
+      ; (let ((contenant (trouve-contenant perso *monde*)))
+	; (when (member objet (contenu contenant))
+	  ; (transfert objet (contenu contenant) (contenu perso))
+	  ; (send-to perso "Vous prenez " objet)
+	  ; (do-for-all-perso (perso obj)
+	    ; (send-to obj "<" perso " prend " objet ">")
+	    ; (show-prompt obj)))))))
+
+(defmethod poser (perso (objet objet-prenable))
+	(when (member objet (contenu perso))
+			(let ((contenant (trouve-contenant perso *monde*)))
+				(transfert objet (contenu perso) (contenu contenant)))
+				(send-to perso "Vous posez " objet)
+			(do-for-all-perso (perso obj)
+				(send-to obj "<" perso " pose " objet ">")
+				(show-prompt obj))))
+	  
+(defmethod prendre (perso (objet objet-prenable))
 	(let ((contenant (trouve-contenant perso *monde*)))
-	  (transfert objet (contenu perso) (contenu contenant)))
-	(send-to perso "Vous posez " objet)
-	(do-for-all-perso (perso obj)
-	  (send-to obj "<" perso " pose " objet ">")
-	  (show-prompt obj))))
-    (defmethod prendre (perso (objet ,type))
-      (let ((contenant (trouve-contenant perso *monde*)))
-	(when (member objet (contenu contenant))
-	  (transfert objet (contenu contenant) (contenu perso))
-	  (send-to perso "Vous prenez " objet)
-	  (do-for-all-perso (perso obj)
-	    (send-to obj "<" perso " prend " objet ">")
-	    (show-prompt obj)))))))
-
-
+		(when (member objet (contenu contenant))
+			(transfert objet (contenu contenant) (contenu perso))
+			(send-to perso "Vous prenez " objet)
+			(do-for-all-perso (perso obj)
+				(send-to obj "<" perso " prend " objet ">")
+				(show-prompt obj)))))
 
 ;;; Une porte
 (defclass porte (objet)
@@ -413,7 +429,7 @@
 
 
 ;;; Un livre
-(defclass livre (objet)
+(defclass livre (objet-prenable)
   ())
 
 (create-command lire (perso livre))
@@ -421,7 +437,7 @@
   (send-to perso "Vous ouvrez " (descr livre) " et vous lisez :")
   (apply #'send-to perso (contenu livre)))
 
-(rend-prenable livre)
+;; (rend-prenable livre)
 
 
 ;;(defun parcour-monde (monde)

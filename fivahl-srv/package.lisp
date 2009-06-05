@@ -27,6 +27,8 @@
    (descr :initarg :descr :initform nil :accessor descr)
    (contenu :initarg :contenu :initform nil :accessor contenu)))
 
+(defclass objet-prenable (objet)
+	())
 
 ;;; Definition des objets
 

@@ -4,10 +4,10 @@
 
 ;;; Definition d'une epee
 
-(defclass epee (objet-prenable)
-  ((attaque :initarg :attaque :initform 9 :accessor attaque)))
+(defclass epee (objet-prenable objet-tapant)
+  ())
 
-(create-command taper (perso objet cible))
+
 
 (defmethod taper ((perso perso) (epee epee) (cible perso))
   (let ((degat (+ (attaque epee) (force perso))))
@@ -49,8 +49,8 @@
   (send-to perso "Sur le panneau est ecrit :")
   (apply #'send-to perso (contenu panneau)))
 
-(defclass cure-dent (objet-prenable)
-  ((attaque :initarg :attaque :initform 1 :accessor attaque)))
+(defclass cure-dent (objet-prenable objet-tapant)
+  ())
   
 (defmethod manger ((perso perso) (cure-dent cure-dent))
   (decf (hp perso) 13)
@@ -66,11 +66,20 @@
 
 ; (rend-prenable cure-dent)
 
-(defmacro rend-tapant (objet type)
-	`(defmethod taper ((perso perso) (,objet ,type) (cible perso))
-	   (let ((degat (+ (attaque ,objet) (force perso))))
+; (defmacro rend-tapant (objet type)
+	; `(defmethod taper ((perso perso) (,objet ,type) (cible perso))
+	   ; (let ((degat (+ (attaque ,objet) (force perso))))
+	    ; (decf (hp cible) degat)
+		; (send-to perso "Vous tapez sur " cible " avec " degat " (HP=" (hp cible) ")")
+		; (send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
+		; (show-prompt cible))))		
+; (rend-tapant cd cure-dent)
+
+(create-command taper (perso objet cible))
+
+(defmethod taper ((perso perso) (objet objet-tapant) (cible perso))
+	(let ((degat (+ (attaque objet) (force perso))))
 	    (decf (hp cible) degat)
 		(send-to perso "Vous tapez sur " cible " avec " degat " (HP=" (hp cible) ")")
 		(send-to cible perso " vous tape dessus avec " degat " (HP=" (hp cible) ")")
-		(show-prompt cible))))		
-(rend-tapant cd cure-dent)
+		(show-prompt cible)))

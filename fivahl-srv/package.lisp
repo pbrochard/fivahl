@@ -30,7 +30,10 @@
 (defclass objet-prenable (objet)
 	())
 
-;;; Definition des objets
+(defclass objet-tapant (objet)
+	((attaque :initarg :attaque :initform 1 :accessor attaque)))
+	
+	;;; Definition des objets
 
 (defclass monde (objet)
   ((en-attente :initform nil :accessor en-attente)

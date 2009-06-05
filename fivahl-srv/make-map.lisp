@@ -54,7 +54,7 @@
       (push (make-instance 'cure-dent :nom "Cure-dent"
 				  :descr "Un simple cure-dent.")
 	    (contenu lieu-2)))
-    (push (make-instance 'epee :nom "Une epee" :descr "Une petite epee") (contenu lieu-1))
+    (push (make-instance 'epee :nom "Une epee" :descr "Une petite epee" :attaque 9) (contenu lieu-1))
     (push (make-instance 'pomme :nom "Une pomme" :descr "Une petite pomme pourrie") (contenu lieu-1))
     (push (make-instance 'pomme :nom "Une pomme" :descr "Une grosse pomme juteuse" :qualite 10) (contenu lieu-1))
     (send-to perso-1 "Bonjour, bienvenue dans Fivahl")
